@@ -1,0 +1,38 @@
+<html ng-app="todoList">
+	<head>
+		<meta charset="UTF-8" content="text/html" />
+		<title>Using AngularJS build todoList</title>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+	</head>
+	<body ng-controller="ListController as crlList">
+		<h1>Todo List</h1>
+		<form ng-submit="crlList.addItem()">
+			<input type="text" name="text" ng-model="crlList.newItem.label"/>
+			<input type="submit" id="submit" Value="Add" />
+		</form>
+		<ul>
+			<li ng-repeat="item in crlList.list | filter:{isFinished:false}">
+				<div ng-hide="item.editing">
+					<input type="checkbox" ng-click="crlList.delItem(item)" />
+					<span ng-dblclick="crlList.edit(item)">{{item.label}}</span>
+				</div>
+				<div ng-show="item.editing">
+					<input type="text" value="item.label" ng-model="item.label" />
+					<button ng-click="crlList.save(item)">Save</button>
+				</div>
+			</li>
+		</ul>
+
+		<hr>
+
+		<h1>Finished.</h1>
+		<ul>
+			<li ng-repeat="item in  crlList.list | filter:{isFinished:true}">{{item.label}}</li>
+		</ul>
+
+		<hr>
+
+		<textexample></textexapmle>
+	</body>
+</html>

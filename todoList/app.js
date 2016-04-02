@@ -36,5 +36,14 @@
 			templateUrl: "example.html"
 		};
 	});
+
+	app.directive('scalse', function(){
+		return {
+			restrict: 'E',
+			templateUrl: "example2.html"
+		};
+	});
+
 	scopelist = [{ label: "Eat Dinner", isFinished: false } , { label: "Go To Run", isFinished: false }];
+
 })();

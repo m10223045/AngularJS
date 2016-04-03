@@ -30,6 +30,7 @@
 			<input type="text" name="text" ng-model="crlList.newItem.label"/>
 			<input type="submit" id="submit" Value="Add" />
 		</form>
+<<<<<<< HEAD
 		<aside>
 			<nav>
 				<ul>
@@ -46,6 +47,20 @@
 				</ul>
 			</nav>
 		</aside>
+=======
+		<ul>
+			<li ng-repeat="item in crlList.list | filter:{isFinished:false}">
+				<div ng-hide="item.editing">
+					<input type="checkbox" ng-click="crlList.delItem(item)" />
+					<span ng-dblclick="crlList.edit(item)">{{item.label}}</span>
+				</div>
+				<div ng-show="item.editing">
+					<input type="text" value="item.label" ng-model="item.label" />
+					<button ng-click="crlList.save(item)">Save</button>
+				</div>
+			</li>
+		</ul>
+>>>>>>> 5cbba9b8c9a3a95fc2414083f0994839fa22fa57
 		<hr>
 		<h1>Finished.</h1>
 		<ul>

@@ -4,25 +4,48 @@
 		<title>Using AngularJS build todoList</title>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
 		<script type="text/javascript" src="app.js"></script>
+		<style>
+			nav>ul::before {
+				border-color: black;
+				display: block;
+				height: 50px;
+				width: 5px;
+				border-left: 1px solid #7A7A7A;
+				z-index: 1;
+				position: absolute;
+				content: "";
+				box-sizing: border-box;
+				left: 12px;
+			}
+
+			header {
+				background: black;
+			}
+		</style>
 	</head>
 	<body ng-controller="ListController as crlList">
+		<header> </header>
 		<h1>Todo List</h1>
 		<form ng-submit="crlList.addItem()">
 			<input type="text" name="text" ng-model="crlList.newItem.label"/>
 			<input type="submit" id="submit" Value="Add" />
 		</form>
-		<ul>
-			<li ng-repeat="item in crlList.list | filter:{isFinished:false}">
-				<div ng-hide="item.editing">
-					<input type="checkbox" ng-click="crlList.delItem(item)" />
-					<span ng-dblclick="crlList.edit(item)">{{item.label}}</span>
-				</div>
-				<div ng-show="item.editing">
-					<input type="text" value="item.label" ng-model="item.label" />
-					<button ng-click="crlList.save(item)">Save</button>
-				</div>
-			</li>
-		</ul>
+		<aside>
+			<nav>
+				<ul>
+					<li ng-repeat="item in crlList.list | filter:{isFinished:false}">
+						<div ng-hide="item.editing">
+							<input type="checkbox" ng-click="crlList.delItem(item)" />
+							<span ng-dblclick="crlList.edit(item)">{{item.label}}</span>
+						</div>
+						<div ng-show="item.editing">
+							<input type="text" value="item.label" ng-model="item.label" />
+							<button ng-click="crlList.save(item)">Save</button>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</aside>
 		<hr>
 		<h1>Finished.</h1>
 		<ul>
